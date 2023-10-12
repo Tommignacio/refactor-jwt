@@ -30,8 +30,14 @@ DEL -> http://localhost:8080/api/products/1
 Eliminar un producto
 
 CART:
+
 POST -> http://localhost:8080/api/carts
 No es necesario enviar nada en este POST, solo creamos los objetos carrito.
 Si se desea, se le puede enviar el objeto directamente desde el Body.
+
+GET -> http://localhost:8080/api/carts/1
+
+POST -> http://localhost:8080/api/carts/2/product/2
+No es necesario enviar nada en este POST, solo agregamos los id de productos al carrito.
 
 
