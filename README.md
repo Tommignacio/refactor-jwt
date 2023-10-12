@@ -1,4 +1,4 @@
-# :skull: Scaffolding Node.js :skull:
+# :skull: Proyect Node.js :skull:
 
 ## :thought_balloon: What is it?
 
@@ -15,7 +15,7 @@ nvm install 18
 -   Clone this repository
 
 ```shell
-git clone https://github.com/sandersgutierrez/scaffolding-nodejs.git
+git clone https://github.com/Tommignacio/pre-entrega-1.git
 ```
 
 -   Run application
@@ -26,7 +26,7 @@ npm start
 
 ## :man_technologist: Author
 
--   [Sanders Gutiérrez](https://sandersgutierrez.github.io) - Software Engineer
+-   [Tomas Dominguez](https://github.com/Tommignacio) - Software Developer
 
 ## :unlock: License
 

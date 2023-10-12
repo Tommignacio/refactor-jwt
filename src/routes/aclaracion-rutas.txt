@@ -1,0 +1,37 @@
+Para probar las rutas escribiremos en POSTMAN las requesest (GET,POST,PUT,DELETE)
+
+PRODUCT:
+
+GET -> http://localhost:8080/api/products
+
+GET ->  http://localhost:8080/api/products/?limit=1 
+
+POST -> http://localhost:8080/api/products
+Como es POST, enviaremos un objeto con las claves del objeto a crear y sus valores.
+En Body -> raw -> cambiamos text por JSON
+{
+    "title":"lapiz",
+    "description":"lapiz negro",
+    "code":1,
+    "price":22,
+    "stock":2,
+    "category":"utiles"
+}
+
+PUT -> http://localhost:8080/api/products/1 
+Enviaremos un objeto con las claves del objeto y sus valores a modificar.
+Ej: Actualizar el producto con id 1 y le agregaremos unnuevo valor de stock.
+En Body -> raw -> cambiamos text por JSON
+{
+    "stock": 4
+}
+
+DEL -> http://localhost:8080/api/products/1
+Eliminar un producto
+
+CART:
+POST -> http://localhost:8080/api/carts
+No es necesario enviar nada en este POST, solo creamos los objetos carrito.
+Si se desea, se le puede enviar el objeto directamente desde el Body.
+
+

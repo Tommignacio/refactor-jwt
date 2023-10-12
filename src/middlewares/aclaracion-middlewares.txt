@@ -1,0 +1,6 @@
+****** Middlewares ****
+
+Los middlewares son funciones intermedias que se ejecutaran antes de que se maneje una solicitud (request) en una aplicación web.
+Realiza tareas específicas antes de continuar con la solicitud.
+En este caso nuestros middlewares funcionaran como validaciones para no hacerlas dentro de la request.
+Creamos middlewares que validan y otros que reciben el error de dicha validacion.
