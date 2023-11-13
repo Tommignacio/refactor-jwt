@@ -1,7 +1,7 @@
-import ContainerAPI from './ContainerAPI.js'
+import ManagerFs from './ManagerFs.js'
 
 //clase hija hereda de container sus metodos y atributos
-export default class CartApi extends ContainerAPI {
+export default class CartFs extends ManagerFs {
     constructor() {
         super('cart') //envia el nombre del archivo exclusivo para carrito
     }

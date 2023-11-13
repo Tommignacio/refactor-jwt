@@ -3,20 +3,20 @@ import { existsSync, promises } from 'fs'
 /*   ***   Herencia de clases Paradigma Orientado a Objetos  ***  
 
  Clase contenedora que serivira como clase Padre de las clases Carrito y producto.
- En ella pondremos los metodos que compartiran sus clases hijas (CartAPI y ProductAPI).
+ En ella pondremos los metodos que compartiran sus clases hijas.
  Esto lo hacemos ya que ambas clases se guardan de la misma manera con fileSystem. 
  Otra forma de hacerlo tambien podria ser a traves de composicion. Es decir, relacionar las clases a traves de  instancias de distitnas clases.
- Se podria lograr pasandole una instancia de la clase containerApi tanto a Product como Cart a traves del contructor, para luego usar los metodos de container en Cart y Product segun sea necesario.
+ Se podria lograr pasandole una instancia de la clase ManagerFs tanto a Product como Cart a traves del contructor, para luego usar los metodos de container en Cart y Product segun sea necesario.
 
  */
 
-class ContainerAPI {
+class ManagerFs {
     constructor(name) {
         this.name = name //recibe un nombre de sus clases hijas
         this.path = './files' //ruta donde guardar el archivo
     }
 
-    /* Metodos que usaran las clases hijas ProductApi y CartApi */
+    /* Metodos que usaran las clases hijas */
 
     //crea carpeta
     async createFiles() {
@@ -167,4 +167,4 @@ class ContainerAPI {
     }
 }
 
-export default ContainerAPI //exportar clase
+export default ManagerFs //exportar clase

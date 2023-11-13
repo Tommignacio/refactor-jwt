@@ -15,7 +15,7 @@ nvm install 18
 -   Clone this repository
 
 ```shell
-git clone https://github.com/Tommignacio/pre-entrega-1.git
+git clone https://github.com/Tommignacio/practica-integradora-complementario.git
 ```
 
 -   Run application
@@ -23,6 +23,12 @@ git clone https://github.com/Tommignacio/pre-entrega-1.git
 ```shell
 npm start
 ```
+
+## :checkered_flag: Como probarlo:
+
+-   Crear archivo .env y agregarle:
+-   PORT = "numero de puerto a eleccion"
+-   DB_URI = "escribir ruta de mongo atlas"
 
 ## :man_technologist: Author
 

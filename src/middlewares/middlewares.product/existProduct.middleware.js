@@ -1,9 +1,11 @@
-import { productApi } from '../../routes/product.routes.js'
+import { productApi } from '../../controllers/ProductController.js'
+
+productApi
 
 export const existProduct = async function (req, res, next) {
     const allProducts = await productApi.getAll()
     for (const i of allProducts) {
-        if (i.id === Number(req.params.pid)) {
+        if (i.id === req.params.pid) {
             return next() //si no hay error, continua
         }
     }

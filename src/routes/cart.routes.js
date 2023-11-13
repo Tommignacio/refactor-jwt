@@ -1,47 +1,18 @@
 import { Router } from 'express'
-import CartApi from '../API/CartApi.js'
 import { errorCart } from '../middlewares/middlewares.cart/errorCart.middleware.js'
 import { cartExist } from '../middlewares/middlewares.cart/cartExist.middleware.js'
 import { existProduct } from '../middlewares/middlewares.product/existProduct.middleware.js'
 import { errorProduct } from '../middlewares/middlewares.product/errorProduct.middleware.js'
+import { addProductInCart, createCart, getCart } from '../controllers/CartController.js'
 
 const router = Router()
-export const cartApi = new CartApi()
 
-router.post('/', async (req, res) => {
-    try {
-        const cart = await cartApi.createCart()
-        await cartApi.save(cart)
-        res.status(200).json({ message: 'cart created succesfully' })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ error: 'Server error' })
-    }
-})
+router.post('/', createCart)
 
-router.get('/:cid', cartExist, errorCart, async (req, res) => {
-    try {
-        const { cid } = req.params
-        const cart = await cartApi.getById(+cid)
-        res.status(200).json({ 'products: ': cart.products }) //array de objetos product
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ error: 'Server error' })
-    }
-})
+//devuelve carrito por su id
+router.get('/:cid', cartExist, errorCart, getCart)
 
 //cartExist, noCartError, existProduct, errorProduct son middlewares
-router.post('/:cid/product/:pid', cartExist, errorCart, existProduct, errorProduct, async (req, res) => {
-    try {
-        const { cid } = req.params
-        const { pid } = req.params
-        const cart = await cartApi.getById(+cid)
-        await cartApi.addProduct(cart, +pid)
-        res.status(200).json({ message: 'added product' })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ error: 'Server error' })
-    }
-})
+router.post('/:cid/product/:pid', cartExist, errorCart, existProduct, errorProduct, addProductInCart)
 
 export default router
