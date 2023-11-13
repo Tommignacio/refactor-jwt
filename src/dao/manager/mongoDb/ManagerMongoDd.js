@@ -1,63 +1,66 @@
+'use strict'
 class ManagerMongoDb {
     constructor(collection) {
         this.collection = collection
     }
 
-    //crea nuevo documento
+    // Crea un nuevo documento
     async create(doc) {
         try {
             const newDoc = await this.collection.create(doc)
             return newDoc
         } catch (err) {
-            throw new Error('error:', err)
+            throw new Error('Error: ' + err)
         }
     }
-    //devuelve todos los documentos
+
+    // Devuelve todos los documentos
     async getAll() {
         try {
             const all = await this.collection.find({})
             return all
         } catch (err) {
-            throw new Error('error:', err)
+            throw new Error('Error: ' + err)
         }
     }
 
-    //devuelve el doc que coincide con el id
+    // Devuelve el documento que coincide con el id
     async getOne(id) {
         try {
             const one = await this.collection.findById(id)
             return one
         } catch (err) {
-            throw new Error('error: Producto no encontrado')
+            throw new Error('Error: ' + err)
         }
     }
-    //actualiza un documento por su id
+
+    // Actualiza un documento por su id
     async update(id, doc) {
         try {
             console.log(typeof id)
             const updateDoc = await this.collection.findByIdAndUpdate(id, doc)
             return updateDoc
         } catch (err) {
-            throw new Error('error:', err)
+            throw new Error('Error: ' + err)
         }
     }
 
-    //guarda documento
+    // Guarda documento
     async save(doc) {
         try {
             await doc.save()
-        } catch (error) {
-            throw new Error('error:', err)
+        } catch (err) {
+            throw new Error('Error: ' + err)
         }
     }
 
-    //eliminar por id
+    // Elimina por id
     async delete(id) {
         try {
             const deleteDoc = await this.collection.findByIdAndDelete(id)
             return deleteDoc
         } catch (err) {
-            throw new Error('error:', err)
+            throw new Error('Error: ' + err)
         }
     }
 }

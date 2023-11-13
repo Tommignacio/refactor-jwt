@@ -1,3 +1,4 @@
+'use strict'
 import { Router } from 'express'
 import { addProduct, deleteProduct, getProduct, getProducts, updateProduct } from '../controllers/ProductController.js'
 import { existProduct } from '../middlewares/middlewares.product/existProduct.middleware.js'

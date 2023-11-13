@@ -1,3 +1,8 @@
+/*global io*/
+/*eslint-disable no-undef*/
+
+import { io } from 'socket.io-client'
+
 const socket = io()
 
 export const loadMessages = callback => {

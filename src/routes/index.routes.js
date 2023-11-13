@@ -1,3 +1,4 @@
+'use strict'
 import { Router } from 'express'
 import productRouter from './product.routes.js'
 import cartRouter from './cart.routes.js'

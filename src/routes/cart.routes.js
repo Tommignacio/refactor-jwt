@@ -1,3 +1,4 @@
+'use strict'
 import { Router } from 'express'
 import { errorCart } from '../middlewares/middlewares.cart/errorCart.middleware.js'
 import { cartExist } from '../middlewares/middlewares.cart/cartExist.middleware.js'
