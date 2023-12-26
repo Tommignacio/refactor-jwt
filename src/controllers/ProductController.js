@@ -21,7 +21,7 @@ export const getProducts = async (req, res) => {
 export const getProduct = async (req, res) => {
     try {
         const { pid } = req.params
-        const product = await productApi.getOne(+pid)
+        const product = await productApi.getOne(pid)
         res.status(200).json({ 'product: ': product })
     } catch (error) {
         res.status(500).json({ error: 'Server error' })

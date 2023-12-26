@@ -18,6 +18,7 @@ export const getCart = async (req, res) => {
     try {
         const { cid } = req.params
         const cart = await cartApi.getOne(cid)
+        console.log(cart.products)
         res.status(200).json({ 'products: ': cart.products })
     } catch (error) {
         console.log(error)

@@ -16,7 +16,8 @@ export class CartMongodb extends ManagerMongoDb {
             } else {
                 cart.products[existingProductIndex].quantity++
             }
-            await cart.save(cart)
+            console.log(cart._id)
+            await this.update(cart._id, cart)
         } catch (error) {
             console.log(error)
             throw new Error('No se pudo agregar el producto al carrito')
