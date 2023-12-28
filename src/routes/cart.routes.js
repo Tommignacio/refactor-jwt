@@ -4,7 +4,7 @@ import { errorCart } from '../middlewares/middlewares.cart/errorCart.middleware.
 import { cartExist } from '../middlewares/middlewares.cart/cartExist.middleware.js'
 import { existProduct } from '../middlewares/middlewares.product/existProduct.middleware.js'
 import { errorProduct } from '../middlewares/middlewares.product/errorProduct.middleware.js'
-import { addProductInCart, createCart, getCart } from '../controllers/CartController.js'
+import { addProductInCart, createCart, deleteProductInCart, getCart } from '../controllers/CartController.js'
 
 const router = Router()
 
@@ -15,5 +15,7 @@ router.get('/:cid', cartExist, errorCart, getCart)
 
 //cartExist, noCartError, existProduct, errorProduct son middlewares
 router.post('/:cid/product/:pid', cartExist, errorCart, existProduct, errorProduct, addProductInCart)
+
+router.delete('/:cid/products/:pid', deleteProductInCart)
 
 export default router

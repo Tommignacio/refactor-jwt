@@ -7,11 +7,9 @@ export const productApi = new ProductMongoDb() //instancio la clase para usar su
 
 export const getProducts = async (req, res) => {
     try {
-        const { limit } = req.query
-        let products = await productApi.getAll()
-        if (limit) {
-            products = products.slice(0, +limit)
-        }
+        const { limit, page, type, sort } = req.query
+        let products = await productApi.getPaginate(limit, page, type, sort)
+        console.log(products)
         res.status(200).json({ 'products: ': products })
     } catch (error) {
         res.status(500).json({ error: 'Server error' })

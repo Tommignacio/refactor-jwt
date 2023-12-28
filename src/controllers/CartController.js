@@ -1,6 +1,7 @@
 'use strict'
 
 import { CartMongodb } from '../dao/manager/mongoDb/Cart.mongoDb.js'
+import { productApi } from './ProductController.js'
 
 export const cartApi = new CartMongodb()
 
@@ -28,8 +29,7 @@ export const getCart = async (req, res) => {
 
 export const addProductInCart = async (req, res) => {
     try {
-        const { cid } = req.params
-        const { pid } = req.params
+        const { cid, pid } = req.params
         const cart = await cartApi.getOne(cid)
         await cartApi.addProduct(cart, pid)
         res.status(200).json({ message: 'added product' })
@@ -37,4 +37,23 @@ export const addProductInCart = async (req, res) => {
         console.log(error)
         res.status(500).json({ error: 'Server error' })
     }
+}
+
+export const deleteProductInCart = async (req, res) => {
+    try {
+        const { cid, pid } = req.params
+        const cart = await cartApi.getOne(cid)
+        await cartApi.deleteProduct(cart, pid)
+        res.status(200).json({ message: 'deleted product' })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Server error' })
+    }
+}
+
+export const updateProductsPaginate = async (req, res) => {
+    try {
+        const { cid, pid } = req.params
+        const productsPag = await productApi.getPaginate(undefined, undefined, undefined, undefined)
+    } catch (error) {}
 }
