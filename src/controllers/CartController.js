@@ -1,7 +1,6 @@
 'use strict'
 
 import { CartMongodb } from '../dao/manager/mongoDb/Cart.mongoDb.js'
-import { productApi } from './ProductController.js'
 
 export const cartApi = new CartMongodb()
 
@@ -20,7 +19,7 @@ export const getCart = async (req, res) => {
         const { cid } = req.params
         const cart = await cartApi.getOne(cid)
         console.log(cart.products)
-        res.status(200).json({ 'products: ': cart.products })
+        res.status(200).json({ 'products ': cart.products })
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: 'Server error' })
@@ -53,7 +52,28 @@ export const deleteProductInCart = async (req, res) => {
 
 export const updateProductsPaginate = async (req, res) => {
     try {
+        const { cid } = req.params
+        const { limit, page, type, sort } = req.query
+        const cart = await cartApi.getOne(cid)
+        const productsPaginated =await cartApi.updateProductsPage(cart,limit,page,type,sort)
+        res.status(200).json({ message: 'updated products',productsPaginated })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Server error' })
+    }
+}
+
+export const updateQuantityProduct = async (req, res) => {
+    try {
         const { cid, pid } = req.params
-        const productsPag = await productApi.getPaginate(undefined, undefined, undefined, undefined)
-    } catch (error) {}
+        const {quantity} = req.body
+        const cart = await cartApi.getOne(cid)
+        await  cartApi.updateProductQuantity(cart,pid,quantity)
+        res.status(200).json({message: "quantity updated"})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Server error' })
+    }
+   
+
 }

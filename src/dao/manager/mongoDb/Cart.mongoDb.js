@@ -45,7 +45,7 @@ export class CartMongodb extends ManagerMongoDb {
                 page: +page,
                 limit: +limit,
             }
-            const query = { cartId: id }
+            const query = { _id: cart._id}
 
             if (sort === 'asc' || sort === 'desc') {
                 options.sort = { price: sort === 'asc' ? 1 : -1 }
@@ -71,5 +71,17 @@ export class CartMongodb extends ManagerMongoDb {
             console.log(error)
             throw new Error('No se pudo actualizar los productos del carrito')
         }
+    }
+
+    async updateProductQuantity(cart,pid,quantity){
+        try {
+            const pos = cart.products.findIndex(el=>el.product._id.equals(pid))
+            cart.products[pos].quantity = quantity
+            await this.update(cart._id, cart)
+        } catch (error) {
+            console.log(error)
+            throw new Error('No se pudo actualizar el producto del carrito')
+        }
+       
     }
 }
