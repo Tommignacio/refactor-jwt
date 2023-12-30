@@ -75,5 +75,16 @@ export const updateQuantityProduct = async (req, res) => {
         res.status(500).json({ error: 'Server error' })
     }
    
+}
 
+export const deleteProductsInCart = async (req, res) =>{
+    try {
+        const { cid } = req.params
+        const cart = await cartApi.getOne(cid)
+        await cartApi.deleteProducts(cart)
+        res.status(200).json({ message: 'deleted products' })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Server error' })
+    }
 }

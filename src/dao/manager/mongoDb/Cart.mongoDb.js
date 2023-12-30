@@ -39,6 +39,17 @@ export class CartMongodb extends ManagerMongoDb {
         }
     }
 
+    async deleteProducts(cart){
+        try {
+            cart.products=[]
+            this.update(cart._id,cart)
+        } catch (error) {
+            console.log(error)
+            throw new Error('No se pudo eliminar los productos del carrito')
+        }
+      
+    }
+
     async updateProductsPage(cart, limit = 10, page = 1, type, sort) {
         try {
             const options = {
