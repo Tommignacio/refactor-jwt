@@ -55,6 +55,7 @@ export class CartMongodb extends ManagerMongoDb {
             const options = {
                 page: +page,
                 limit: +limit,
+                lean: true 
             }
             const query = { _id: cart._id}
 
@@ -66,9 +67,10 @@ export class CartMongodb extends ManagerMongoDb {
                 query.type = type
             }
             const result = await this.collection.paginate(query, options)
+            console.log(result.docs[0].products,"hola")
             return {
                 status: 'success',
-                payload: result.docs,
+                payload: result.docs[0].products,
                 totalPages: result.totalPages,
                 prevPage: result.prevPage,
                 nextPage: result.nextPage,

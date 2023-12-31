@@ -1,14 +1,17 @@
 'use strict'
 
-import { productApi } from './ProductController.js'
-export const getProductsPaginate = async (req, res) => {
+import { cartApi } from './CartController.js'
+
+export const getCartPaginate = async (req, res) => {
     try {
+        const { cid } = req.params
         const { limit, page, type, sort } = req.query
-        let products = await productApi.getPaginate(limit, page, type, sort)
+        const cart = await cartApi.getOne(cid)
+        let products = await cartApi.updateProductsPage(cart, limit, page, type, sort)
         console.log((products))
-        res.render('products', {
+        res.render('carts', {
             layout: 'main',
-            title: 'Products',
+            title: 'Cart',
             products: products.payload,
             totalPages: products.totalPages,
             prevPage: products.prevPage,
@@ -16,7 +19,8 @@ export const getProductsPaginate = async (req, res) => {
             currentPage: products.page,
             limit,
             type,
-            sort
+            sort,
+            cartId:cart._id
         });
     } catch (error) {
         res.status(500).json({ error: 'Server error' })

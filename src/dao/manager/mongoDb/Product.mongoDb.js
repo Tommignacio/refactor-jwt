@@ -11,6 +11,7 @@ export class ProductMongoDb extends ManagerMongoDb {
             const options = {
                 page: +page,
                 limit: +limit,
+                lean: true //para que lea el objeto mongoose
             }
             const query = {}
 
@@ -22,6 +23,7 @@ export class ProductMongoDb extends ManagerMongoDb {
                 query.type = type
             }
             const result = await this.collection.paginate(query, options)
+            console.log(result)
             return {
                 status: 'success',
                 payload: result.docs,
