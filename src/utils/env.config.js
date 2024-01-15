@@ -5,4 +5,5 @@ dotenv.config()
 export const envConfig = {
     PORT: +process.env.PORT || 8080,
     DB_URI: process.env.DB_URI,
+    SIGNED_COOKIE: process.env.SIGNED_COOKIE,
 }

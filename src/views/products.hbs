@@ -1,14 +1,15 @@
+{{> profile}}
 <h2>Products</h2>
 <div>
     <table>
-        <tr> 
+        <tr>
             <th>ID</th>
             <th>Title</th>
-            <th>Description</th> 
-            <th>Price</th> 
-            <th>Code</th> 
-            <th>Stock</th> 
-            <th>Category</th> 
+            <th>Description</th>
+            <th>Price</th>
+            <th>Code</th>
+            <th>Stock</th>
+            <th>Category</th>
         </tr>
         <tbody>
             {{#each products}}
@@ -25,15 +26,15 @@
             {{/each}}
         </tbody>
     </table>
+</div>
 <div>
     {{#if prevPage}}
-        <a href="/views/products?page={{prevPage}}">Previous</a>
+        <a href='/views/products?page={{prevPage}}'>Previous</a>
     {{/if}}
 
     {{#if nextPage}}
-        <a href="/views/products?page={{nextPage}}">Next</a>
+        <a href='/views/products?page={{nextPage}}'>Next</a>
     {{/if}}
 </div>
 
 <p>Page: {{currentPage}} / {{totalPages}}</p>
-

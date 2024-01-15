@@ -1,7 +1,5 @@
 import { productApi } from '../../controllers/ProductController.js'
 
-productApi
-
 export const existProduct = async function (req, res, next) {
     const allProducts = await productApi.getAll()
     for (const i of allProducts) {

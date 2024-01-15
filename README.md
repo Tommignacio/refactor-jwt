@@ -15,7 +15,7 @@ nvm install 18
 -   Clone this repository
 
 ```shell
-git clone https://github.com/Tommignacio/pre-entrega-2
+git clone https://github.com/Tommignacio/implementacion-login.git
 ```
 
 -   Run application

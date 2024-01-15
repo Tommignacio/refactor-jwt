@@ -5,7 +5,8 @@ export const getProductsPaginate = async (req, res) => {
     try {
         const { limit, page, type, sort } = req.query
         let products = await productApi.getPaginate(limit, page, type, sort)
-        console.log((products))
+        const sessionUser = req.session.user
+        console.log({ sessionUser })
         res.render('products', {
             layout: 'main',
             title: 'Products',
@@ -16,8 +17,9 @@ export const getProductsPaginate = async (req, res) => {
             currentPage: products.page,
             limit,
             type,
-            sort
-        });
+            sort,
+            sessionUser,
+        })
     } catch (error) {
         res.status(500).json({ error: 'Server error' })
     }

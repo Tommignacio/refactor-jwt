@@ -8,6 +8,8 @@ class ManagerMongoDb {
     async create(doc) {
         try {
             const newDoc = await this.collection.create(doc)
+            console.log('aaaaaasasas')
+            console.log({ newDoc })
             return newDoc
         } catch (err) {
             throw new Error('Error: ' + err)
@@ -28,6 +30,7 @@ class ManagerMongoDb {
     async getOne(id) {
         try {
             const one = await this.collection.findById(id)
+            console.log({ one })
             return one
         } catch (err) {
             throw new Error('Error: ' + err)
