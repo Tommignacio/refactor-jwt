@@ -30,10 +30,10 @@ const initializePassport = () => {
                             role: 'user',
                             githubAuthenticated: true,
                         }
-                        console.log(newUser)
                         let result = await userApi.create(newUser)
-
                         done(null, result)
+                    } else {
+                        done(null, user)
                     }
                 } catch (error) {
                     done(error)

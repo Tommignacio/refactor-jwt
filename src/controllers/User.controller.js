@@ -42,7 +42,7 @@ export const userLogged = async (req, res) => {
 export const githubCallBack = async (req, res) => {
     try {
         req.session.user = req.user
-        res.redirect('/')
+        res.redirect('/') //redirije a una pagina(cambiar)
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: 'Server error' })
