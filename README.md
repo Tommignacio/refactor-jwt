@@ -15,7 +15,7 @@ nvm install 18
 -   Clone this repository
 
 ```shell
-git clone https://github.com/Tommignacio/implementacion-login.git
+git clone https://github.com/Tommignacio/refactor-login.git
 ```
 
 -   Run application

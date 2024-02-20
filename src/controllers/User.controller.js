@@ -6,38 +6,57 @@ export const userApi = new UserMongoDd()
 
 export const userRegister = async (req, res) => {
     try {
-        const { first_name, last_name, email, age, password } = req.body
-        const user = {
-            first_name,
-            last_name,
-            email,
-            age,
-            password,
-            role: req.isAdmin ? 'admin' : 'user',
-        }
-        const newUser = await userApi.create(user)
-        res.status(200).json({ message: 'user created', payload: newUser })
+        res.status(201).json({ message: 'user created', payload: req.user })
     } catch (error) {
+        console.error('Error during user registration:', error)
+        res.status(500).json({ error: 'Server error' })
+    }
+}
+
+export const failUserRegister = async (req, res) => {
+    try {
+        res.status(400).json({ error: 'Failed to register user' })
+    } catch (error) {
+        console.log(error)
+        console.error('Error during failed user registration:', error)
         res.status(500).json({ error: 'Server error' })
     }
 }
 
 export const userLogged = async (req, res) => {
     try {
-        const { email, password } = req.body
-        const user = await userApi.findUserByEmailPassw(email, password)
+        if (!req.user) return res.status(400).send({ status: 'error', error: 'Invalid credentials' })
         req.session.user = {
-            name: `${user.first_name} ${user.last_name}`,
-            email: user.email,
-            age: user.age,
-            role: user.role,
+            name: `${req.user.first_name} ${req.user.last_name}`,
+            email: req.user.email,
+            age: req.user.age,
+            role: req.user.role,
         }
-        res.status(200).json({ message: 'user founded succesfully', payload: req.session.user })
+        res.status(200).json({ message: 'user founded succesfully', payload: req.user })
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Server error' })
     }
 }
 
+export const githubCallBack = async (req, res) => {
+    try {
+        req.session.user = req.user
+        res.redirect('/')
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Server error' })
+    }
+}
+
+export const failUserLogin = async (req, res) => {
+    try {
+        res.status(400).json({ error: 'Failed to login user' })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Server error' })
+    }
+}
 export const userLogout = async (req, res) => {
     try {
         req.session.destroy(err => {

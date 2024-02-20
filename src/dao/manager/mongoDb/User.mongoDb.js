@@ -6,9 +6,9 @@ export class UserMongoDd extends ManagerMongoDb {
         super(userModel)
     }
 
-    async findUserByEmailPassw(email, password) {
+    async findUserByEmail(email) {
         try {
-            const user = await this.collection.findOne({ email, password })
+            const user = await this.collection.findOne({ email })
             return user
         } catch (error) {
             throw new Error('Error: ' + err)

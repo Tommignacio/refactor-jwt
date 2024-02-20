@@ -3,12 +3,14 @@ import morgan from 'morgan'
 import session from 'express-session'
 import MongoStorage from 'connect-mongo'
 import router from './routes/index.routes.js'
-import { envConfig } from './utils/env.config.js'
+import { envConfig } from './config/env.config.js'
 import { connectDb } from './DB/dbConnection.js'
 import { engine } from 'express-handlebars'
 import { Server as ioServer } from 'socket.io'
 import http from 'http'
 import sockets from './sockets.js'
+import passport from 'passport'
+import initializePassport from './config/passport.config.js'
 
 const app = express()
 const httpServer = http.createServer(app)
@@ -18,18 +20,23 @@ const io = new ioServer(httpServer)
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
 //session
 app.use(
     session({
         store: new MongoStorage({
             mongoUrl: envConfig.DB_URI,
             mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+            ttl: 30,
         }),
         secret: envConfig.SIGNED_COOKIE,
         resave: false,
         saveUninitialized: false,
     })
 )
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 //handlebars
 app.engine(

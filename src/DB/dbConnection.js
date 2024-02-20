@@ -1,6 +1,6 @@
 'use strict'
 import mongoose from 'mongoose'
-import { envConfig } from '../utils/env.config.js'
+import { envConfig } from '../config/env.config.js'
 
 export const connectDb = async () => {
     try {

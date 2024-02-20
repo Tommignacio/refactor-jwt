@@ -1,10 +1,11 @@
 import { userApi } from '../../controllers/User.controller.js'
+import { isValidPassword } from '../../utils/utils.js'
 
-export const existUserLogin = async function (req, res, next) {
+export const validPasswLogin = async function (req, res, next) {
     try {
-        const { email } = req.body
-        const exists = await userApi.findUserByEmail(email)
-        if (exists) {
+        const { email, password } = req.body
+        const user = await userApi.findUserByEmail(email)
+        if (isValidPassword(user, password)) {
             return next()
         } else {
             return next('error')

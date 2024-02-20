@@ -8,8 +8,6 @@ class ManagerMongoDb {
     async create(doc) {
         try {
             const newDoc = await this.collection.create(doc)
-            console.log('aaaaaasasas')
-            console.log({ newDoc })
             return newDoc
         } catch (err) {
             throw new Error('Error: ' + err)
