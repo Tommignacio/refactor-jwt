@@ -9,4 +9,5 @@ export const envConfig = {
     CLIENT_SECRET: process.env.CLIENT_SECRET,
     APP_ID: process.env.APP_ID,
     CLIENT_ID: process.env.CLIENT_ID,
+    TOKEN_SECRET: process.env.TOKEN_SECRET,
 }

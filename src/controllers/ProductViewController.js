@@ -5,7 +5,7 @@ export const getProductsPaginate = async (req, res) => {
     try {
         const { limit, page, type, sort } = req.query
         let products = await productApi.getPaginate(limit, page, type, sort)
-        const sessionUser = req.session.user
+        const sessionUser = req.user
         console.log({ sessionUser })
         res.render('products', {
             layout: 'main',

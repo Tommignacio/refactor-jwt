@@ -13,7 +13,8 @@ form.addEventListener('submit', e => {
         },
     })
         .then(result => {
-            if (result.status === 200) {
+            console.log(result)
+            if (result.status === 201) {
                 window.location.replace('/views/sessions/login')
             }
         })

@@ -8,6 +8,8 @@ This is scaffolding for Node.js projects.
 
 -   Install Node.js 18, go to [NVM](https://github.com/nvm-sh/nvm#git-install) for installation NVM.
 
+-   Rename file .env.example to .env and complete the values with your enviroment variables.
+
 ```shell
 nvm install 18
 ```
@@ -15,7 +17,7 @@ nvm install 18
 -   Clone this repository
 
 ```shell
-git clone https://github.com/Tommignacio/refactor-login.git
+git clone https://github.com/Tommignacio/refactor-jwt.git
 ```
 
 -   Run application

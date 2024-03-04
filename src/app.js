@@ -1,7 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
-import session from 'express-session'
-import MongoStorage from 'connect-mongo'
+// import session from 'express-session'
+// import MongoStorage from 'connect-mongo'
 import router from './routes/index.routes.js'
 import { envConfig } from './config/env.config.js'
 import { connectDb } from './DB/dbConnection.js'
@@ -11,6 +11,7 @@ import http from 'http'
 import sockets from './sockets.js'
 import passport from 'passport'
 import initializePassport from './config/passport.config.js'
+import cookieParser from 'cookie-parser'
 
 const app = express()
 const httpServer = http.createServer(app)
@@ -20,23 +21,23 @@ const io = new ioServer(httpServer)
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
 
 //session
-app.use(
-    session({
-        store: new MongoStorage({
-            mongoUrl: envConfig.DB_URI,
-            mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
-            ttl: 30,
-        }),
-        secret: envConfig.SIGNED_COOKIE,
-        resave: false,
-        saveUninitialized: false,
-    })
-)
+// app.use(
+//     session({
+//         store: new MongoStorage({
+//             mongoUrl: envConfig.DB_URI,
+//             mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+//             ttl: 30,
+//         }),
+//         secret: envConfig.SIGNED_COOKIE,
+//         resave: false,
+//         saveUninitialized: false,
+//     })
+// )
 initializePassport()
 app.use(passport.initialize())
-app.use(passport.session())
 
 //handlebars
 app.engine(

@@ -13,8 +13,21 @@ form.addEventListener('submit', e => {
     })
         .then(result => {
             if (result.status === 200) {
-                window.location.replace('/views/products')
+                return result.json() // Convertir la respuesta a JSON
+            } else {
+                throw new Error('Failed to log in')
             }
+        })
+        .then(data => {
+            // Aquí puedes acceder al nombre de usuario desde la respuesta del servidor
+            console.log({ data })
+            const {
+                payload: { user },
+            } = data
+            console.log('user:', user)
+
+            // Redirigir a la página de productos o realizar otra acción según necesites
+            window.location.replace('/views/products')
         })
         .catch(error => {
             console.error('Error:', error)
